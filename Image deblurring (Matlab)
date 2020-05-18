@@ -1,5 +1,10 @@
+%%% By solving ||Qz-q||^2+2\eta||z||_{TV}, we can verify the efficiency of the theta-scheme.
+% Q is the blurring operator
+% q is the resulted image
+% \eta is the balanced parameter
+% TV norm is classic in this kind of problem
+
 function [X_out,history]=deblur_tv_theta(Bobs,P,center,lambda,l,u,beta1,beta2,X,objstar,pars)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Assigning parameres according to pars and/or default values
 flag=exist('pars');
 if (flag&&isfield(pars,'MAXITER'))
