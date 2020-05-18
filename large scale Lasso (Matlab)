@@ -28,6 +28,7 @@ alpha=0.9;                                                            %% Our ine
 tol1=1e-2;tol2=1e-4;tol3=1e-6;tol4=1e-8;tol5=1e-10;                   %% Toleracies of fixed precisions
 tol=1e-5;                                                             %% Toleracy of lsqr and cholesky     
 
+%%%%% Function executive %%%%%%
 tic
 [x1, history1] = lasso_theta_lsqr(A, b, lambda,beta1,beta2,tol);      %% Inexact theta-scheme using lsqr 
 toc
