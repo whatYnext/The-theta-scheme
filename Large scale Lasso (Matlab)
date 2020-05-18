@@ -1,7 +1,10 @@
 % By solving min ||Ax-b||^2+\lambda ||x||_1, we can verify the efficiency of the proposed inexact theta scheme in the paper 
 % "The Glowinski–Le Tallec splitting method revisited: A general convergence and convergence rate analysis"
 
-
+% A is the traing sample matrix
+% b is the training labels (continuous)
+% lambda is the trade-off parameter
+% l_1 norm is the penalty for obtaing the sparsity
 
 %%%%Data generation %%%%%
 m  = 200000;   % number of examples
