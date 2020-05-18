@@ -1,0 +1,65 @@
+% By solving min ||Ax-b||^2+\lambda ||x||_1 to verify the efficiency of our proposed inexact theta scheme. (Using Matlab)
+
+% As one subproblem is to solve large scale linear equation, we adopt three iterative schemes to proceed: lsqr, cholesky and conjugate
+% gradient which formulates the inexact theta-scheme.
+
+% Details can refer to "The Glowinski–Le Tallec splitting method revisited: A general convergence and convergence rate analysis" published
+% by Yaonan Ma and Li-zhi Liao in the Journal of Industrial and Management Optimization.
+
+% For the paper, please see: https://www.aimsciences.org/article/doi/10.3934/jimo.2020040#b17
+
+
+%%%%Data generation %%%%%
+m  = 200000;   % number of examples
+n  = 3000000;     % number of features
+p1 = 100/n;     % sparsity density of solution vector
+p2 = 0.0001;    % sparsity density of A
+
+x0 = sprandn(n, 1, p1);
+A = sprandn(m, n, p2);
+b = A*x0 + 0.1*randn(m,1);
+
+lambda_max = norm(A'*b, 'inf');
+lambda = 0.1*lambda_max; 
+
+%%%%% Parameter settings %%%
+LipA1=normest(A,1e-2);beta1=2./LipA1^2;beta2=2./LipA1^2;              %% Beta1 and Beta2
+alpha=0.9;                                                            %% Our inexact criterion
+tol1=1e-2;tol2=1e-4;tol3=1e-6;tol4=1e-8;tol5=1e-10;                   %% Toleracies of fixed precisions
+tol=1e-5;                                                             %% Toleracy of lsqr and cholesky     
+
+tic
+[x1, history1] = lasso_theta_lsqr(A, b, lambda,beta1,beta2,tol);      %% Inexact theta-scheme using lsqr 
+toc
+objstar1=history1.objval(end);
+
+tic
+[x11, history11] = lasso_theta_cholesky(A, b, lambda,beta1,beta2,tol);  %%Inexact theta-scheme using cholesky
+toc
+objstar2=history11.objval(end);objstar=min(objstar1,objstar2);
+
+tic 
+[x2,history2]=lasso_theta_cgs(A,b,lambda,beta1,beta2,alpha,objstar);    %% Inexact theta-scheme using our critertion
+toc
+
+tic 
+[x3,history3]=lasso_theta_cgs2(A,b,lambda,beta1,beta2,objstar,tol1);    %% Inexact theta-scheme using fixed precison: tol1
+toc
+
+tic
+[x4,history4]=lasso_theta_cgs2(A,b,lambda,beta1,beta2,objstar,tol2);    %% Inexact theta-scheme using fixed precison: tol2
+toc
+
+tic
+[x5,history5]=lasso_theta_cgs2(A,b,lambda,beta1,beta2,objstar,tol3);    %% Inexact theta-scheme using fixed precison: tol3
+toc
+
+tic
+[x6,history6]=lasso_theta_cgs2(A,b,lambda,beta1,beta2,objstar,tol4);    %% Inexact theta-scheme using fixed precison: tol4
+toc
+
+tic
+[x7,history7]=lasso_theta_cgs2(A,b,lambda,beta1,beta2,objstar,tol5);    %% Inexact theta-scheme using fixed precison: tol5
+toc 
+
+
