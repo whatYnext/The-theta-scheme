@@ -4,8 +4,8 @@
 % \eta is the balanced parameter
 % TV norm is classic in this kind of problem
 
-% The function is based on the sources in Amir Beck's homepage which are publicly available. Therefore, inside functions like
-"denoise_bound_init" can be found therein.(Please run with classical pacakage PSF)
+% The function is based on the sources in Amir Beck's homepage which are publicly available. Therefore, the inside functions like
+"denoise_bound_init" can be found therein.(Please also run with classical pacakage HNO)
 
 
 function [X_out,history]=deblur_tv_theta(Bobs,P,center,lambda,l,u,beta1,beta2,X,objstar,pars)
