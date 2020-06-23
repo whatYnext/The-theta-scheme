@@ -20,10 +20,10 @@ lambda_max = norm(A'*b, 'inf');
 lambda = 0.1*lambda_max; 
 
 %%%%% Parameter settings %%%
-LipA1=normest(A,1e-2);beta1=2./LipA1^2;beta2=2./LipA1^2;              %% Beta1 and Beta2
-alpha=0.9;                                                            %% The proposed inexact criterion
-tol1=1e-2;                                                            %% Toleracies of fixed precisions
-tol=1e-5;                                                             %% Toleracy of lsqr     
+LipA1=normest(A,1e-2);beta1=2./LipA1^2;beta2=2./LipA1^2;             
+alpha=0.9;                                                           
+tol1=1e-2;                                                            
+tol=1e-5;                                                                
 
 %%Assistance functions
 function p = objective(A, b, lambda,z)
