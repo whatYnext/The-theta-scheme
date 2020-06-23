@@ -171,14 +171,14 @@ end
 
 %%%%% Comparison %%%%%%
 tic
-[x1, history1] = lasso_theta_lsqr(A, b, lambda,beta1,beta2);      %% Inexact theta-scheme using lsqr 
+[x1, history1] = lasso_theta_lsqr(A, b, lambda,beta1,beta2);     
 toc
 objstar=history1.objval(end);
 
 tic 
-[x2,history2]=lasso_theta_cgs(A,b,lambda,beta1,beta2,alpha,objstar);    %% Inexact theta-scheme using our critertion
+[x2,history2]=lasso_theta_cgs(A,b,lambda,beta1,beta2,alpha,objstar);  
 toc
 
 tic 
-[x3,history3]=lasso_theta_cgs1(A,b,lambda,beta1,beta2,objstar,tol1);    %% Inexact theta-scheme using fixed precison: tol1
+[x3,history3]=lasso_theta_cgs1(A,b,lambda,beta1,beta2,objstar,tol1);    
 toc
