@@ -1,5 +1,5 @@
 % By solving min ||Ax-b||^2+\lambda ||x||_1, we can verify the efficiency of the proposed inexact theta scheme in the paper 
-% "The Glowinski–Le Tallec splitting method revisited: A general convergence and convergence rate analysis"
+% "The Glowinskiâ€“Le Tallec splitting method revisited: A general convergence and convergence rate analysis"
 
 % A is the traing sample matrix
 % b is the training labels (continuous)
@@ -25,7 +25,7 @@ alpha=0.9;                                                            %% The pro
 tol1=1e-2;                                                            %% Toleracies of fixed precisions
 tol=1e-5;                                                             %% Toleracy of lsqr     
 
-%Assistance functions
+%%Assistance functions
 function p = objective(A, b, lambda,z)
     p = ( 1/2*sum((A*z - b).^2) + lambda*norm(z,1) );
 end
